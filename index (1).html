@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saba Fatima | Flutter Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #141416;
+      --surface: #1e1e22;
+      --surface2: #26262c;
+      --accent: #FFB400;
+      --accent2: #44d9e6;
+      --text: #e8e8e8;
+      --muted: #888;
+      --border: #2e2e36;
+      --flutter-blue: #54c5f8;
+      --flutter-teal: #01579b;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 30px 16px;
+    }
+    .wrapper {
+      display: flex;
+      gap: 24px;
+      max-width: 1060px;
+      width: 100%;
+    }
+
+    /* ---- SIDEBAR ---- */
+    .sidebar {
+      width: 250px;
+      min-width: 220px;
+      background: var(--surface);
+      border-radius: 20px;
+      padding: 28px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      position: sticky;
+      top: 30px;
+      height: fit-content;
+      border: 1px solid var(--border);
+    }
+    .avatar-wrap {
+      width: 110px;
+      height: 110px;
+      border-radius: 20px;
+      overflow: hidden;
+      background: var(--surface2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      border: 2px solid var(--border);
+    }
+    .avatar-placeholder {
+      font-size: 48px;
+      color: var(--accent);
+    }
+    .sidebar h2 { font-size: 1.15rem; font-weight: 700; text-align: center; }
+    .role-badge {
+      margin-top: 6px;
+      background: var(--surface2);
+      color: var(--muted);
+      font-size: 0.72rem;
+      padding: 4px 14px;
+      border-radius: 20px;
+      letter-spacing: 0.04em;
+      font-family: 'Fira Code', monospace;
+    }
+    .sidebar-divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+      margin: 20px 0;
+    }
+    .info-item {
+      width: 100%;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .info-icon {
+      width: 34px;
+      height: 34px;
+      background: var(--surface2);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+    .info-label { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+    .info-value { font-size: 0.82rem; font-weight: 500; margin-top: 1px; }
+    .socials {
+      display: flex;
+      gap: 10px;
+      margin-top: 4px;
+    }
+    .social-btn {
+      width: 34px;
+      height: 34px;
+      background: var(--surface2);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 14px;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: 1px solid var(--border);
+    }
+    .social-btn:hover { color: var(--accent); border-color: var(--accent); }
+
+    /* ---- MAIN ---- */
+    .main {
+      flex: 1;
+      background: var(--surface);
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .nav {
+      display: flex;
+      justify-content: flex-end;
+      gap: 4px;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface2);
+    }
+    .nav-btn {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 0.82rem;
+      padding: 6px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .nav-btn:hover, .nav-btn.active {
+      color: var(--accent);
+      background: rgba(255,180,0,0.08);
+    }
+    .nav-btn.active { color: var(--accent); }
+
+    .page { display: none; padding: 32px 28px; }
+    .page.active { display: block; }
+
+    /* ---- PAGE TITLE ---- */
+    .page-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .title-line {
+      width: 40px;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+
+    /* ---- ABOUT ---- */
+    .about-bio { font-size: 0.9rem; line-height: 1.75; color: #ccc; margin-bottom: 10px; }
+    .about-bio span { color: var(--accent); font-weight: 600; }
+    .section-subtitle {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 28px 0 16px;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .service-card {
+      background: var(--surface2);
+      border-radius: 14px;
+      padding: 18px;
+      border: 1px solid var(--border);
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      transition: border-color 0.2s;
+    }
+    .service-card:hover { border-color: var(--accent); }
+    .service-icon {
+      font-size: 22px;
+      background: rgba(255,180,0,0.1);
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .service-title { font-size: 0.88rem; font-weight: 700; margin-bottom: 4px; }
+    .service-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+
+    .skills-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    .skill-chip {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 0.8rem;
+      font-family: 'Fira Code', monospace;
+      color: var(--accent2);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: border-color 0.2s;
+    }
+    .skill-chip:hover { border-color: var(--accent2); }
+
+    /* ---- RESUME ---- */
+    .resume-section { margin-bottom: 30px; }
+    .resume-section-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text);
+    }
+    .resume-section-title span { font-size: 1.1rem; }
+    .timeline-item {
+      position: relative;
+      padding-left: 22px;
+      margin-bottom: 22px;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 7px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      left: 4px;
+      top: 20px;
+      width: 2px;
+      height: calc(100% + 4px);
+      background: var(--border);
+    }
+    .timeline-item:last-child::after { display: none; }
+    .timeline-title { font-size: 0.9rem; font-weight: 700; }
+    .timeline-org { font-size: 0.82rem; color: var(--muted); margin-top: 1px; }
+    .timeline-date { font-size: 0.78rem; color: var(--accent); margin: 3px 0; font-family: 'Fira Code', monospace; }
+    .timeline-location { font-size: 0.78rem; color: var(--muted); font-style: italic; }
+    .timeline-bullets { margin-top: 8px; padding-left: 0; list-style: none; }
+    .timeline-bullets li {
+      font-size: 0.8rem;
+      color: #bbb;
+      margin-bottom: 4px;
+      padding-left: 14px;
+      position: relative;
+      line-height: 1.5;
+    }
+    .timeline-bullets li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* ---- PORTFOLIO ---- */
+    .portfolio-filters {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: rgba(255,180,0,0.07);
+    }
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .portfolio-card {
+      background: var(--surface2);
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: border-color 0.2s, transform 0.2s;
+      cursor: pointer;
+    }
+    .portfolio-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .portfolio-thumb {
+      height: 110px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+    }
+    .portfolio-info { padding: 12px 14px; }
+    .portfolio-name { font-size: 0.85rem; font-weight: 700; }
+    .portfolio-tag { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
+
+    /* ---- CONTACT ---- */
+    .contact-info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .contact-card {
+      background: var(--surface2);
+      border-radius: 14px;
+      padding: 18px;
+      border: 1px solid var(--border);
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+    .contact-icon {
+      width: 42px;
+      height: 42px;
+      background: rgba(255,180,0,0.1);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .contact-label { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    .contact-value { font-size: 0.85rem; font-weight: 500; margin-top: 2px; }
+    .form-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 16px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+    .form-input {
+      width: 100%;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      color: var(--text);
+      font-size: 0.85rem;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-input:focus { border-color: var(--accent); }
+    .form-input::placeholder { color: var(--muted); }
+    textarea.form-input { resize: vertical; min-height: 100px; }
+    .submit-btn {
+      background: var(--accent);
+      color: #000;
+      border: none;
+      padding: 11px 28px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      float: right;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: opacity 0.2s;
+    }
+    .submit-btn:hover { opacity: 0.88; }
+
+    /* responsive */
+    @media (max-width: 780px) {
+      .wrapper { flex-direction: column; }
+      .sidebar { width: 100%; position: static; }
+      .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+      .services-grid { grid-template-columns: 1fr; }
+      .contact-info-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .portfolio-grid { grid-template-columns: 1fr 1fr; }
+      .nav-btn { font-size: 0.72rem; padding: 5px 8px; }
+      .form-row { grid-template-columns: 1fr; }
+      .page { padding: 22px 16px; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="avatar-wrap">
+      <span class="avatar-placeholder">👩‍💻</span>
+    </div>
+    <h2>Saba Fatima</h2>
+    <div class="role-badge">Flutter Developer</div>
+    <div class="sidebar-divider"></div>
+
+    <div class="info-item">
+      <div class="info-icon">✉️</div>
+      <div>
+        <div class="info-label">Email</div>
+        <div class="info-value">sabaaaahussain@gmail.com</div>
+      </div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon">📍</div>
+      <div>
+        <div class="info-label">Location</div>
+        <div class="info-value">Rawalpindi, Pakistan</div>
+      </div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon">📞</div>
+      <div>
+        <div class="info-label">Phone</div>
+        <div class="info-value">+92 342 522 6178</div>
+      </div>
+    </div>
+
+    <div class="sidebar-divider"></div>
+    <div class="socials">
+      <a href="https://linkedin.com/in/saba-fatima-344a86291" target="_blank" class="social-btn" title="LinkedIn">in</a>
+      <a href="https://github.com/" target="_blank" class="social-btn" title="GitHub">⌥</a>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <nav class="nav">
+      <button class="nav-btn active" onclick="showPage('about', this)">About</button>
+      <button class="nav-btn" onclick="showPage('resume', this)">Resume</button>
+      <button class="nav-btn" onclick="showPage('portfolio', this)">Portfolio</button>
+      <button class="nav-btn" onclick="showPage('contact', this)">Contact</button>
+    </nav>
+
+    <!-- ABOUT -->
+    <section class="page active" id="about">
+      <div class="page-title">About Me</div>
+      <div class="title-line"></div>
+      <p class="about-bio">
+        A passionate <span>Flutter developer</span> with hands-on experience building cross-platform mobile applications for Android and iOS. Skilled in <span>Dart, Flutter widgets, REST API integration</span>, and state management. I focus on delivering clean, responsive, and high-performance apps with great user experiences.
+      </p>
+      <p class="about-bio">
+        Currently pursuing my Bachelor's in Information Technology at Rawalpindi Women University. Always learning, always building — let's create something amazing together.
+      </p>
+
+      <div class="section-subtitle">What I Do</div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">📱</div>
+          <div>
+            <div class="service-title">Mobile Apps</div>
+            <div class="service-desc">Cross-platform Flutter apps for Android and iOS with smooth UI and performance.</div>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🎨</div>
+          <div>
+            <div class="service-title">UI/UX Design</div>
+            <div class="service-desc">Pixel-perfect, modern, and intuitive designs built directly in Flutter.</div>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🔗</div>
+          <div>
+            <div class="service-title">API Integration</div>
+            <div class="service-desc">Seamless REST API integration with clean data handling and state management.</div>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🔥</div>
+          <div>
+            <div class="service-title">Firebase & Backend</div>
+            <div class="service-desc">Firebase auth, Firestore, and cloud functions to power your Flutter app.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-subtitle">Skills</div>
+      <div class="skills-row">
+        <div class="skill-chip">🐦 Flutter</div>
+        <div class="skill-chip">🎯 Dart</div>
+        <div class="skill-chip">🔥 Firebase</div>
+        <div class="skill-chip">📡 REST APIs</div>
+        <div class="skill-chip">🧩 State Mgmt</div>
+        <div class="skill-chip">🌐 HTML/CSS</div>
+        <div class="skill-chip">©️ C++</div>
+        <div class="skill-chip">🗄️ MySQL</div>
+        <div class="skill-chip">🔷 WordPress</div>
+        <div class="skill-chip">📊 MS Office</div>
+      </div>
+    </section>
+
+    <!-- RESUME -->
+    <section class="page" id="resume">
+      <div class="page-title">Resume</div>
+      <div class="title-line"></div>
+
+      <div class="resume-section">
+        <div class="resume-section-title"><span>🎓</span> Education</div>
+        <div class="timeline-item">
+          <div class="timeline-title">Rawalpindi Women University</div>
+          <div class="timeline-org">Bachelor's in Information Technology (B.S. IT)</div>
+          <div class="timeline-date">2023 – 2027</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-title">Fazaia Inter College, Rawalpindi</div>
+          <div class="timeline-org">Intermediate – Pre-Engineering</div>
+          <div class="timeline-date">2021 – 2023</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-title">Fazaia Inter College, Rawalpindi</div>
+          <div class="timeline-org">Matriculation – Biology | A+</div>
+          <div class="timeline-date">2019 – 2021</div>
+        </div>
+      </div>
+
+      <div class="resume-section">
+        <div class="resume-section-title"><span>💼</span> Experience</div>
+        <div class="timeline-item">
+          <div class="timeline-title">Mobile App Developer</div>
+          <div class="timeline-org">Developers Hub</div>
+          <div class="timeline-date">Recent</div>
+          <ul class="timeline-bullets">
+            <li>Developing cross-platform Flutter applications for Android and iOS.</li>
+            <li>Building responsive UIs and integrating REST APIs for live data.</li>
+            <li>Implementing state management and Firebase backend services.</li>
+          </ul>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-title">HR Intern (Squad Leader)</div>
+          <div class="timeline-org">GaoTek Inc. – USA & Canada</div>
+          <div class="timeline-date">3 Months</div>
+          <ul class="timeline-bullets">
+            <li>Supervised a team of 15+ interns: hiring, training, and performance monitoring.</li>
+            <li>Scheduled daily team meetings and tracked intern work data.</li>
+            <li>Conducted employee interviews, job postings, and headhunting.</li>
+            <li>Collaborated with international management across time zones.</li>
+          </ul>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-title">Digital Marketing Intern</div>
+          <div class="timeline-org">GaoTek Inc. – USA & Canada</div>
+          <div class="timeline-date">3 Months</div>
+          <ul class="timeline-bullets">
+            <li>Managed company social media presence across multiple platforms.</li>
+            <li>Developed and implemented digital marketing strategies.</li>
+            <li>Assisted in email handling, advertising, and content creation.</li>
+          </ul>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-title">Social Media Marketing Intern</div>
+          <div class="timeline-org">Kshitikshaa Foundation</div>
+          <div class="timeline-date">1 Month</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-title">Management Trainee</div>
+          <div class="timeline-org">PNY Training</div>
+        </div>
+      </div>
+
+      <div class="resume-section">
+        <div class="resume-section-title"><span>🚀</span> Projects</div>
+        <div class="timeline-item">
+          <div class="timeline-title">Smart Safety App</div>
+          <div class="timeline-org">Flutter mobile application focused on personal safety features.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-title">Quiz App</div>
+          <div class="timeline-org">Interactive quiz application built with Flutter and Dart.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-title">HR Management System</div>
+          <div class="timeline-org">Desktop application (C# + MySQL) for managing employee details, salaries, and slips.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-title">Portfolio Website</div>
+          <div class="timeline-org">Personal portfolio built with HTML, CSS, and JavaScript.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section class="page" id="portfolio">
+      <div class="page-title">Portfolio</div>
+      <div class="title-line"></div>
+      <div class="portfolio-filters">
+        <button class="filter-btn active" onclick="filterPortfolio('all', this)">All</button>
+        <button class="filter-btn" onclick="filterPortfolio('flutter', this)">Flutter Apps</button>
+        <button class="filter-btn" onclick="filterPortfolio('web', this)">Web</button>
+        <button class="filter-btn" onclick="filterPortfolio('other', this)">Other</button>
+      </div>
+      <div class="portfolio-grid" id="portfolioGrid">
+        <div class="portfolio-card" data-cat="flutter">
+          <div class="portfolio-thumb" style="background: linear-gradient(135deg,#0d47a1,#54c5f8);">🛡️</div>
+          <div class="portfolio-info">
+            <div class="portfolio-name">Smart Safety App</div>
+            <div class="portfolio-tag">Flutter App</div>
+          </div>
+        </div>
+        <div class="portfolio-card" data-cat="flutter">
+          <div class="portfolio-thumb" style="background: linear-gradient(135deg,#1a1a2e,#e94560);">❓</div>
+          <div class="portfolio-info">
+            <div class="portfolio-name">Quiz App</div>
+            <div class="portfolio-tag">Flutter App</div>
+          </div>
+        </div>
+        <div class="portfolio-card" data-cat="flutter">
+          <div class="portfolio-thumb" style="background: linear-gradient(135deg,#0f3460,#533483);">📱</div>
+          <div class="portfolio-info">
+            <div class="portfolio-name">Flutter UI Projects</div>
+            <div class="portfolio-tag">Flutter App</div>
+          </div>
+        </div>
+        <div class="portfolio-card" data-cat="web">
+          <div class="portfolio-thumb" style="background: linear-gradient(135deg,#1e3c72,#2a5298);">🌐</div>
+          <div class="portfolio-info">
+            <div class="portfolio-name">Portfolio Website</div>
+            <div class="portfolio-tag">Web Development</div>
+          </div>
+        </div>
+        <div class="portfolio-card" data-cat="web">
+          <div class="portfolio-thumb" style="background: linear-gradient(135deg,#41295a,#2f0743);">🔷</div>
+          <div class="portfolio-info">
+            <div class="portfolio-name">WordPress Site</div>
+            <div class="portfolio-tag">Web Development</div>
+          </div>
+        </div>
+        <div class="portfolio-card" data-cat="other">
+          <div class="portfolio-thumb" style="background: linear-gradient(135deg,#134e5e,#71b280);">💼</div>
+          <div class="portfolio-info">
+            <div class="portfolio-name">HR Management System</div>
+            <div class="portfolio-tag">Desktop App (C# + MySQL)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="page" id="contact">
+      <div class="page-title">Contact</div>
+      <div class="title-line"></div>
+      <div class="contact-info-grid">
+        <div class="contact-card">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-value">sabaaaahussain@gmail.com</div>
+          </div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-label">Location</div>
+            <div class="contact-value">Rawalpindi, Pakistan</div>
+          </div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-label">Phone</div>
+            <div class="contact-value">+92 342 522 6178</div>
+          </div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon">💼</div>
+          <div>
+            <div class="contact-label">LinkedIn</div>
+            <div class="contact-value">saba-fatima-344a86291</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-title">Send a Message</div>
+      <div class="form-row">
+        <input type="text" class="form-input" placeholder="Full name" />
+        <input type="email" class="form-input" placeholder="Email address" />
+      </div>
+      <input type="text" class="form-input" placeholder="Subject" style="margin-bottom:12px;" />
+      <textarea class="form-input" placeholder="Your message..."></textarea>
+      <div style="margin-top:14px; overflow:hidden;">
+        <button class="submit-btn" onclick="handleSubmit()">✉️ Send Message</button>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+  function showPage(id, btn) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  function filterPortfolio(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.portfolio-card').forEach(card => {
+      card.style.display = (cat === 'all' || card.dataset.cat === cat) ? 'block' : 'none';
+    });
+  }
+
+  function handleSubmit() {
+    alert('Message sent! Saba will get back to you soon. 🚀');
+  }
+</script>
+</body>
+</html>
