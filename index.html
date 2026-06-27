@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Saba Fatima | Flutter Developer</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Devicons for skill icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+  <!-- Font Awesome for social icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     :root {
       --bg: #141416;
@@ -15,8 +19,6 @@
       --text: #e8e8e8;
       --muted: #888;
       --border: #2e2e36;
-      --flutter-blue: #54c5f8;
-      --flutter-teal: #01579b;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -29,397 +31,280 @@
       align-items: flex-start;
       padding: 30px 16px;
     }
-    .wrapper {
-      display: flex;
-      gap: 24px;
-      max-width: 1060px;
-      width: 100%;
-    }
+    .wrapper { display: flex; gap: 24px; max-width: 1060px; width: 100%; }
 
-    /* ---- SIDEBAR ---- */
+    /* SIDEBAR */
     .sidebar {
-      width: 250px;
-      min-width: 220px;
+      width: 250px; min-width: 220px;
       background: var(--surface);
-      border-radius: 20px;
-      padding: 28px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0;
-      position: sticky;
-      top: 30px;
-      height: fit-content;
+      border-radius: 20px; padding: 28px 20px;
+      display: flex; flex-direction: column; align-items: center;
+      position: sticky; top: 30px; height: fit-content;
       border: 1px solid var(--border);
     }
     .avatar-wrap {
-      width: 110px;
-      height: 110px;
-      border-radius: 20px;
-      overflow: hidden;
-      background: var(--surface2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 16px;
-      border: 2px solid var(--border);
+      width: 110px; height: 110px; border-radius: 20px;
+      overflow: hidden; background: var(--surface2);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px; border: 2px solid var(--accent);
     }
-    .avatar-placeholder {
-      font-size: 48px;
-      color: var(--accent);
-    }
+    /* ---- CHANGE YOUR PHOTO HERE ---- */
+    /* Replace 'your-photo.jpg' with your actual photo filename */
+    /* Put the photo in the same folder as index.html */
+    .avatar-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .avatar-placeholder { font-size: 48px; color: var(--accent); }
+
     .sidebar h2 { font-size: 1.15rem; font-weight: 700; text-align: center; }
     .role-badge {
-      margin-top: 6px;
-      background: var(--surface2);
-      color: var(--muted);
-      font-size: 0.72rem;
-      padding: 4px 14px;
-      border-radius: 20px;
-      letter-spacing: 0.04em;
-      font-family: 'Fira Code', monospace;
+      margin-top: 6px; background: var(--surface2); color: var(--muted);
+      font-size: 0.72rem; padding: 4px 14px; border-radius: 20px;
+      letter-spacing: 0.04em; font-family: 'Fira Code', monospace;
     }
-    .sidebar-divider {
-      width: 100%;
-      height: 1px;
-      background: var(--border);
-      margin: 20px 0;
-    }
-    .info-item {
-      width: 100%;
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      margin-bottom: 14px;
-    }
+    .sidebar-divider { width: 100%; height: 1px; background: var(--border); margin: 20px 0; }
+    .info-item { width: 100%; display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; }
     .info-icon {
-      width: 34px;
-      height: 34px;
-      background: var(--surface2);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--accent);
-      font-size: 15px;
-      flex-shrink: 0;
+      width: 34px; height: 34px; background: var(--surface2); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent); font-size: 15px; flex-shrink: 0;
     }
     .info-label { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
-    .info-value { font-size: 0.82rem; font-weight: 500; margin-top: 1px; }
-    .socials {
-      display: flex;
-      gap: 10px;
-      margin-top: 4px;
-    }
+    .info-value { font-size: 0.82rem; font-weight: 500; margin-top: 1px; word-break: break-all; }
+    .socials { display: flex; gap: 10px; margin-top: 4px; }
     .social-btn {
-      width: 34px;
-      height: 34px;
-      background: var(--surface2);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--muted);
-      font-size: 14px;
-      text-decoration: none;
-      transition: all 0.2s;
-      border: 1px solid var(--border);
+      width: 38px; height: 38px; background: var(--surface2); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted); font-size: 18px; text-decoration: none;
+      transition: all 0.2s; border: 1px solid var(--border);
     }
-    .social-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .social-btn:hover { color: var(--accent); border-color: var(--accent); transform: translateY(-2px); }
+    .social-btn .fa-linkedin { color: #0077b5; }
+    .social-btn .fa-github { color: #e8e8e8; }
+    .social-btn:hover .fa-linkedin, .social-btn:hover .fa-github { color: var(--accent); }
 
-    /* ---- MAIN ---- */
-    .main {
-      flex: 1;
-      background: var(--surface);
-      border-radius: 20px;
-      border: 1px solid var(--border);
-      overflow: hidden;
-    }
+    /* MAIN */
+    .main { flex: 1; background: var(--surface); border-radius: 20px; border: 1px solid var(--border); overflow: hidden; }
     .nav {
-      display: flex;
-      justify-content: flex-end;
-      gap: 4px;
-      padding: 14px 20px;
-      border-bottom: 1px solid var(--border);
-      background: var(--surface2);
+      display: flex; justify-content: flex-end; gap: 4px;
+      padding: 14px 20px; border-bottom: 1px solid var(--border); background: var(--surface2);
     }
     .nav-btn {
-      background: none;
-      border: none;
-      color: var(--muted);
-      font-size: 0.82rem;
-      padding: 6px 14px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-family: 'Inter', sans-serif;
-      font-weight: 500;
-      transition: all 0.2s;
+      background: none; border: none; color: var(--muted); font-size: 0.82rem;
+      padding: 6px 14px; border-radius: 8px; cursor: pointer;
+      font-family: 'Inter', sans-serif; font-weight: 500; transition: all 0.2s;
     }
-    .nav-btn:hover, .nav-btn.active {
-      color: var(--accent);
-      background: rgba(255,180,0,0.08);
-    }
-    .nav-btn.active { color: var(--accent); }
-
+    .nav-btn:hover, .nav-btn.active { color: var(--accent); background: rgba(255,180,0,0.08); }
     .page { display: none; padding: 32px 28px; }
     .page.active { display: block; }
+    .page-title { font-size: 1.6rem; font-weight: 700; margin-bottom: 4px; }
+    .title-line { width: 40px; height: 3px; background: var(--accent); border-radius: 2px; margin-bottom: 24px; }
 
-    /* ---- PAGE TITLE ---- */
-    .page-title {
-      font-size: 1.6rem;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-    .title-line {
-      width: 40px;
-      height: 3px;
-      background: var(--accent);
-      border-radius: 2px;
-      margin-bottom: 24px;
-    }
-
-    /* ---- ABOUT ---- */
+    /* ABOUT */
     .about-bio { font-size: 0.9rem; line-height: 1.75; color: #ccc; margin-bottom: 10px; }
     .about-bio span { color: var(--accent); font-weight: 600; }
-    .section-subtitle {
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin: 28px 0 16px;
-    }
-    .services-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
+    .section-subtitle { font-size: 1.1rem; font-weight: 700; margin: 28px 0 16px; }
+    .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     .service-card {
-      background: var(--surface2);
-      border-radius: 14px;
-      padding: 18px;
-      border: 1px solid var(--border);
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-      transition: border-color 0.2s;
+      background: var(--surface2); border-radius: 14px; padding: 18px;
+      border: 1px solid var(--border); display: flex; gap: 14px;
+      align-items: flex-start; transition: border-color 0.2s;
     }
     .service-card:hover { border-color: var(--accent); }
     .service-icon {
-      font-size: 22px;
-      background: rgba(255,180,0,0.1);
-      width: 44px;
-      height: 44px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
+      font-size: 22px; background: rgba(255,180,0,0.1); width: 44px; height: 44px;
+      border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
     }
     .service-title { font-size: 0.88rem; font-weight: 700; margin-bottom: 4px; }
     .service-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
 
-    .skills-row {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
+    /* SKILLS - Big Icons */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
       margin-top: 8px;
     }
-    .skill-chip {
+    .skill-item {
       background: var(--surface2);
       border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 8px 16px;
-      font-size: 0.8rem;
-      font-family: 'Fira Code', monospace;
-      color: var(--accent2);
+      border-radius: 14px;
+      padding: 16px 10px;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 6px;
-      transition: border-color 0.2s;
+      gap: 8px;
+      transition: all 0.2s;
+      cursor: default;
     }
-    .skill-chip:hover { border-color: var(--accent2); }
+    .skill-item:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .skill-item i { font-size: 38px; }
+    .skill-item span { font-size: 0.72rem; color: var(--muted); text-align: center; font-family: 'Fira Code', monospace; }
 
-    /* ---- RESUME ---- */
+    /* RESUME */
     .resume-section { margin-bottom: 30px; }
     .resume-section-title {
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 18px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--text);
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 18px;
+      display: flex; align-items: center; gap: 10px; color: var(--text);
     }
-    .resume-section-title span { font-size: 1.1rem; }
-    .timeline-item {
-      position: relative;
-      padding-left: 22px;
-      margin-bottom: 22px;
-    }
+    .timeline-item { position: relative; padding-left: 22px; margin-bottom: 22px; }
     .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 7px;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--accent);
+      content: ''; position: absolute; left: 0; top: 7px;
+      width: 10px; height: 10px; border-radius: 50%; background: var(--accent);
     }
     .timeline-item::after {
-      content: '';
-      position: absolute;
-      left: 4px;
-      top: 20px;
-      width: 2px;
-      height: calc(100% + 4px);
-      background: var(--border);
+      content: ''; position: absolute; left: 4px; top: 20px;
+      width: 2px; height: calc(100% + 4px); background: var(--border);
     }
     .timeline-item:last-child::after { display: none; }
     .timeline-title { font-size: 0.9rem; font-weight: 700; }
     .timeline-org { font-size: 0.82rem; color: var(--muted); margin-top: 1px; }
     .timeline-date { font-size: 0.78rem; color: var(--accent); margin: 3px 0; font-family: 'Fira Code', monospace; }
-    .timeline-location { font-size: 0.78rem; color: var(--muted); font-style: italic; }
     .timeline-bullets { margin-top: 8px; padding-left: 0; list-style: none; }
     .timeline-bullets li {
-      font-size: 0.8rem;
-      color: #bbb;
-      margin-bottom: 4px;
-      padding-left: 14px;
-      position: relative;
-      line-height: 1.5;
+      font-size: 0.8rem; color: #bbb; margin-bottom: 4px;
+      padding-left: 14px; position: relative; line-height: 1.5;
     }
-    .timeline-bullets li::before {
-      content: '›';
-      position: absolute;
-      left: 0;
-      color: var(--accent);
-      font-weight: 700;
-    }
+    .timeline-bullets li::before { content: '›'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
 
-    /* ---- PORTFOLIO ---- */
-    .portfolio-filters {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 22px;
-      flex-wrap: wrap;
-    }
+    /* PORTFOLIO */
+    .portfolio-filters { display: flex; gap: 8px; margin-bottom: 22px; flex-wrap: wrap; }
     .filter-btn {
-      background: none;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      padding: 6px 16px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      cursor: pointer;
-      font-family: 'Inter', sans-serif;
-      transition: all 0.2s;
+      background: none; border: 1px solid var(--border); color: var(--muted);
+      padding: 6px 16px; border-radius: 20px; font-size: 0.8rem; cursor: pointer;
+      font-family: 'Inter', sans-serif; transition: all 0.2s;
     }
-    .filter-btn:hover, .filter-btn.active {
-      color: var(--accent);
-      border-color: var(--accent);
-      background: rgba(255,180,0,0.07);
-    }
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
+    .filter-btn:hover, .filter-btn.active { color: var(--accent); border-color: var(--accent); background: rgba(255,180,0,0.07); }
+    .portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
     .portfolio-card {
-      background: var(--surface2);
-      border-radius: 14px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      transition: border-color 0.2s, transform 0.2s;
-      cursor: pointer;
+      background: var(--surface2); border-radius: 14px; overflow: hidden;
+      border: 1px solid var(--border); transition: border-color 0.2s, transform 0.2s; cursor: pointer;
     }
     .portfolio-card:hover { border-color: var(--accent); transform: translateY(-3px); }
-    .portfolio-thumb {
-      height: 110px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.2rem;
-    }
+    .portfolio-thumb { height: 110px; display: flex; align-items: center; justify-content: center; font-size: 2.2rem; }
     .portfolio-info { padding: 12px 14px; }
     .portfolio-name { font-size: 0.85rem; font-weight: 700; }
     .portfolio-tag { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
 
-    /* ---- CONTACT ---- */
-    .contact-info-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin-bottom: 28px;
+    /* PROJECT MODAL */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.75); z-index: 1000;
+      align-items: center; justify-content: center; padding: 20px;
     }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: var(--surface); border-radius: 20px; border: 1px solid var(--border);
+      max-width: 620px; width: 100%; max-height: 85vh; overflow-y: auto;
+      animation: modalIn 0.25s ease;
+    }
+    @keyframes modalIn { from { transform: scale(0.92); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .modal-header {
+      padding: 22px 24px 16px; border-bottom: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .modal-title { font-size: 1.1rem; font-weight: 700; }
+    .modal-tag { font-size: 0.72rem; color: var(--accent); font-family: 'Fira Code', monospace; margin-top: 3px; }
+    .modal-close {
+      width: 34px; height: 34px; background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 8px; cursor: pointer; color: var(--muted); font-size: 18px;
+      display: flex; align-items: center; justify-content: center; transition: all 0.2s;
+    }
+    .modal-close:hover { color: var(--accent); border-color: var(--accent); }
+    .modal-body { padding: 22px 24px; }
+    .modal-imgs {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 18px;
+    }
+    .modal-img {
+      height: 130px; border-radius: 12px; overflow: hidden;
+      background: var(--surface2); display: flex; align-items: center;
+      justify-content: center; font-size: 3rem; border: 1px solid var(--border);
+    }
+    .modal-desc { font-size: 0.85rem; color: #ccc; line-height: 1.7; margin-bottom: 14px; }
+    .modal-tech { display: flex; gap: 8px; flex-wrap: wrap; }
+    .modal-tech span {
+      background: rgba(255,180,0,0.1); color: var(--accent);
+      border: 1px solid rgba(255,180,0,0.3); padding: 4px 12px;
+      border-radius: 20px; font-size: 0.75rem; font-family: 'Fira Code', monospace;
+    }
+    .modal-links { margin-top: 18px; display: flex; gap: 10px; }
+    .modal-link {
+      padding: 8px 18px; border-radius: 8px; font-size: 0.82rem; font-weight: 600;
+      text-decoration: none; transition: opacity 0.2s; display: flex; align-items: center; gap: 6px;
+    }
+    .modal-link.primary { background: var(--accent); color: #000; }
+    .modal-link.secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+    .modal-link:hover { opacity: 0.85; }
+
+    /* BLOG */
+    .blog-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .blog-card {
+      background: var(--surface2); border-radius: 16px; overflow: hidden;
+      border: 1px solid var(--border); transition: all 0.2s; cursor: pointer; text-decoration: none; display: block;
+    }
+    .blog-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .blog-thumb {
+      height: 150px; display: flex; align-items: center; justify-content: center;
+      font-size: 3rem; position: relative; overflow: hidden;
+    }
+    .blog-thumb-overlay {
+      position: absolute; inset: 0; display: flex; align-items: flex-end; padding: 12px;
+    }
+    .blog-category {
+      background: rgba(255,180,0,0.9); color: #000; font-size: 0.7rem;
+      font-weight: 700; padding: 3px 10px; border-radius: 20px; text-transform: uppercase;
+    }
+    .blog-info { padding: 16px; }
+    .blog-date { font-size: 0.72rem; color: var(--muted); margin-bottom: 6px; font-family: 'Fira Code', monospace; }
+    .blog-title { font-size: 0.92rem; font-weight: 700; color: var(--text); margin-bottom: 8px; line-height: 1.4; }
+    .blog-excerpt { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+
+    /* CONTACT */
+    .contact-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 28px; }
     .contact-card {
-      background: var(--surface2);
-      border-radius: 14px;
-      padding: 18px;
-      border: 1px solid var(--border);
-      display: flex;
-      gap: 14px;
-      align-items: center;
+      background: var(--surface2); border-radius: 14px; padding: 18px;
+      border: 1px solid var(--border); display: flex; gap: 14px; align-items: center;
     }
     .contact-icon {
-      width: 42px;
-      height: 42px;
-      background: rgba(255,180,0,0.1);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      flex-shrink: 0;
+      width: 42px; height: 42px; background: rgba(255,180,0,0.1); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0;
     }
     .contact-label { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
     .contact-value { font-size: 0.85rem; font-weight: 500; margin-top: 2px; }
     .form-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 16px; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
     .form-input {
-      width: 100%;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 12px 16px;
-      color: var(--text);
-      font-size: 0.85rem;
-      font-family: 'Inter', sans-serif;
-      outline: none;
-      transition: border-color 0.2s;
+      width: 100%; background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 10px; padding: 12px 16px; color: var(--text);
+      font-size: 0.85rem; font-family: 'Inter', sans-serif; outline: none; transition: border-color 0.2s;
     }
     .form-input:focus { border-color: var(--accent); }
     .form-input::placeholder { color: var(--muted); }
     textarea.form-input { resize: vertical; min-height: 100px; }
     .submit-btn {
-      background: var(--accent);
-      color: #000;
-      border: none;
-      padding: 11px 28px;
-      border-radius: 10px;
-      font-size: 0.85rem;
-      font-weight: 700;
-      cursor: pointer;
-      float: right;
-      font-family: 'Inter', sans-serif;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: opacity 0.2s;
+      background: var(--accent); color: #000; border: none; padding: 11px 28px;
+      border-radius: 10px; font-size: 0.85rem; font-weight: 700; cursor: pointer;
+      float: right; font-family: 'Inter', sans-serif; display: flex; align-items: center;
+      gap: 8px; transition: opacity 0.2s;
     }
     .submit-btn:hover { opacity: 0.88; }
+    .form-note { font-size: 0.75rem; color: var(--muted); margin-top: 10px; }
 
-    /* responsive */
+    /* RESPONSIVE */
     @media (max-width: 780px) {
       .wrapper { flex-direction: column; }
       .sidebar { width: 100%; position: static; }
       .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
       .services-grid { grid-template-columns: 1fr; }
       .contact-info-grid { grid-template-columns: 1fr; }
+      .blog-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: repeat(4, 1fr); }
     }
     @media (max-width: 480px) {
       .portfolio-grid { grid-template-columns: 1fr 1fr; }
       .nav-btn { font-size: 0.72rem; padding: 5px 8px; }
       .form-row { grid-template-columns: 1fr; }
       .page { padding: 22px 16px; }
+      .skills-grid { grid-template-columns: repeat(3, 1fr); }
+      .modal-imgs { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -429,38 +314,49 @@
   <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="avatar-wrap">
-      <span class="avatar-placeholder">👩‍💻</span>
+      <!-- 
+        HOW TO ADD YOUR PHOTO:
+        1. Put your photo (e.g. saba.jpg) in the same folder as index.html
+        2. Change 'your-photo.jpg' below to your actual filename
+        3. If no photo, the emoji shows instead
+      -->
+      <img src="your-photo.jpg" alt="Saba Fatima"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+           style="width:100%;height:100%;object-fit:cover;">
+      <span class="avatar-placeholder" style="display:none;">👩‍💻</span>
     </div>
     <h2>Saba Fatima</h2>
     <div class="role-badge">Flutter Developer</div>
     <div class="sidebar-divider"></div>
-
     <div class="info-item">
-      <div class="info-icon">✉️</div>
+      <div class="info-icon"><i class="fa fa-envelope"></i></div>
       <div>
         <div class="info-label">Email</div>
         <div class="info-value">sabaaaahussain@gmail.com</div>
       </div>
     </div>
     <div class="info-item">
-      <div class="info-icon">📍</div>
+      <div class="info-icon"><i class="fa fa-location-dot"></i></div>
       <div>
         <div class="info-label">Location</div>
         <div class="info-value">Rawalpindi, Pakistan</div>
       </div>
     </div>
     <div class="info-item">
-      <div class="info-icon">📞</div>
+      <div class="info-icon"><i class="fa fa-phone"></i></div>
       <div>
         <div class="info-label">Phone</div>
         <div class="info-value">+92 342 522 6178</div>
       </div>
     </div>
-
     <div class="sidebar-divider"></div>
     <div class="socials">
-      <a href="https://linkedin.com/in/saba-fatima-344a86291" target="_blank" class="social-btn" title="LinkedIn">in</a>
-      <a href="https://github.com/" target="_blank" class="social-btn" title="GitHub">⌥</a>
+      <a href="https://linkedin.com/in/saba-fatima-344a86291" target="_blank" class="social-btn" title="LinkedIn">
+        <i class="fa-brands fa-linkedin fa-lg" style="color:#0077b5;"></i>
+      </a>
+      <a href="https://github.com/Sabafatima9" target="_blank" class="social-btn" title="GitHub">
+        <i class="fa-brands fa-github fa-lg" style="color:#e8e8e8;"></i>
+      </a>
     </div>
   </aside>
 
@@ -470,6 +366,7 @@
       <button class="nav-btn active" onclick="showPage('about', this)">About</button>
       <button class="nav-btn" onclick="showPage('resume', this)">Resume</button>
       <button class="nav-btn" onclick="showPage('portfolio', this)">Portfolio</button>
+      <button class="nav-btn" onclick="showPage('blog', this)">Blog</button>
       <button class="nav-btn" onclick="showPage('contact', this)">Contact</button>
     </nav>
 
@@ -517,17 +414,47 @@
       </div>
 
       <div class="section-subtitle">Skills</div>
-      <div class="skills-row">
-        <div class="skill-chip">🐦 Flutter</div>
-        <div class="skill-chip">🎯 Dart</div>
-        <div class="skill-chip">🔥 Firebase</div>
-        <div class="skill-chip">📡 REST APIs</div>
-        <div class="skill-chip">🧩 State Mgmt</div>
-        <div class="skill-chip">🌐 HTML/CSS</div>
-        <div class="skill-chip">©️ C++</div>
-        <div class="skill-chip">🗄️ MySQL</div>
-        <div class="skill-chip">🔷 WordPress</div>
-        <div class="skill-chip">📊 MS Office</div>
+      <div class="skills-grid">
+        <div class="skill-item">
+          <i class="devicon-flutter-plain colored"></i>
+          <span>Flutter</span>
+        </div>
+        <div class="skill-item">
+          <i class="devicon-dart-plain colored"></i>
+          <span>Dart</span>
+        </div>
+        <div class="skill-item">
+          <i class="devicon-firebase-plain colored"></i>
+          <span>Firebase</span>
+        </div>
+        <div class="skill-item">
+          <i class="devicon-androidstudio-plain colored"></i>
+          <span>Android</span>
+        </div>
+        <div class="skill-item">
+          <i class="devicon-git-plain colored"></i>
+          <span>Git</span>
+        </div>
+        <div class="skill-item">
+          <i class="devicon-html5-plain colored"></i>
+          <span>HTML</span>
+        </div>
+        <div class="skill-item">
+          <i class="devicon-css3-plain colored"></i>
+          <span>CSS</span>
+        </div>
+        <div class="skill-item">
+          <i class="devicon-cplusplus-plain colored"></i>
+          <span>C++</span>
+        </div>
+        <div class="skill-item">
+          <i class="devicon-mysql-plain colored"></i>
+          <span>MySQL</span>
+        </div>
+        <div class="skill-item">
+          <i class="devicon-wordpress-plain" style="color:#21759b;"></i>
+          <span>WordPress</span>
+        </div>
       </div>
     </section>
 
@@ -535,7 +462,6 @@
     <section class="page" id="resume">
       <div class="page-title">Resume</div>
       <div class="title-line"></div>
-
       <div class="resume-section">
         <div class="resume-section-title"><span>🎓</span> Education</div>
         <div class="timeline-item">
@@ -554,7 +480,6 @@
           <div class="timeline-date">2019 – 2021</div>
         </div>
       </div>
-
       <div class="resume-section">
         <div class="resume-section-title"><span>💼</span> Experience</div>
         <div class="timeline-item">
@@ -568,7 +493,7 @@
           </ul>
         </div>
         <div class="timeline-item">
-          <div class="timeline-title">HR Intern (Squad Leader)</div>
+          <div class="timeline-title">HR Intern – Squad Leader</div>
           <div class="timeline-org">GaoTek Inc. – USA & Canada</div>
           <div class="timeline-date">3 Months</div>
           <ul class="timeline-bullets">
@@ -598,7 +523,6 @@
           <div class="timeline-org">PNY Training</div>
         </div>
       </div>
-
       <div class="resume-section">
         <div class="resume-section-title"><span>🚀</span> Projects</div>
         <div class="timeline-item">
@@ -611,7 +535,7 @@
         </div>
         <div class="timeline-item">
           <div class="timeline-title">HR Management System</div>
-          <div class="timeline-org">Desktop application (C# + MySQL) for managing employee details, salaries, and slips.</div>
+          <div class="timeline-org">Desktop application (C# + MySQL) for employee management.</div>
         </div>
         <div class="timeline-item">
           <div class="timeline-title">Portfolio Website</div>
@@ -631,49 +555,104 @@
         <button class="filter-btn" onclick="filterPortfolio('other', this)">Other</button>
       </div>
       <div class="portfolio-grid" id="portfolioGrid">
-        <div class="portfolio-card" data-cat="flutter">
-          <div class="portfolio-thumb" style="background: linear-gradient(135deg,#0d47a1,#54c5f8);">🛡️</div>
+        <div class="portfolio-card" data-cat="flutter" onclick="openModal('safety')">
+          <div class="portfolio-thumb" style="background:linear-gradient(135deg,#0d47a1,#54c5f8);">🛡️</div>
           <div class="portfolio-info">
             <div class="portfolio-name">Smart Safety App</div>
             <div class="portfolio-tag">Flutter App</div>
           </div>
         </div>
-        <div class="portfolio-card" data-cat="flutter">
-          <div class="portfolio-thumb" style="background: linear-gradient(135deg,#1a1a2e,#e94560);">❓</div>
+        <div class="portfolio-card" data-cat="flutter" onclick="openModal('quiz')">
+          <div class="portfolio-thumb" style="background:linear-gradient(135deg,#1a1a2e,#e94560);">❓</div>
           <div class="portfolio-info">
             <div class="portfolio-name">Quiz App</div>
             <div class="portfolio-tag">Flutter App</div>
           </div>
         </div>
-        <div class="portfolio-card" data-cat="flutter">
-          <div class="portfolio-thumb" style="background: linear-gradient(135deg,#0f3460,#533483);">📱</div>
+        <div class="portfolio-card" data-cat="flutter" onclick="openModal('flutter-ui')">
+          <div class="portfolio-thumb" style="background:linear-gradient(135deg,#0f3460,#533483);">📱</div>
           <div class="portfolio-info">
             <div class="portfolio-name">Flutter UI Projects</div>
             <div class="portfolio-tag">Flutter App</div>
           </div>
         </div>
-        <div class="portfolio-card" data-cat="web">
-          <div class="portfolio-thumb" style="background: linear-gradient(135deg,#1e3c72,#2a5298);">🌐</div>
+        <div class="portfolio-card" data-cat="web" onclick="openModal('portfolio')">
+          <div class="portfolio-thumb" style="background:linear-gradient(135deg,#1e3c72,#2a5298);">🌐</div>
           <div class="portfolio-info">
             <div class="portfolio-name">Portfolio Website</div>
             <div class="portfolio-tag">Web Development</div>
           </div>
         </div>
-        <div class="portfolio-card" data-cat="web">
-          <div class="portfolio-thumb" style="background: linear-gradient(135deg,#41295a,#2f0743);">🔷</div>
+        <div class="portfolio-card" data-cat="web" onclick="openModal('wordpress')">
+          <div class="portfolio-thumb" style="background:linear-gradient(135deg,#41295a,#2f0743);">🔷</div>
           <div class="portfolio-info">
             <div class="portfolio-name">WordPress Site</div>
             <div class="portfolio-tag">Web Development</div>
           </div>
         </div>
-        <div class="portfolio-card" data-cat="other">
-          <div class="portfolio-thumb" style="background: linear-gradient(135deg,#134e5e,#71b280);">💼</div>
+        <div class="portfolio-card" data-cat="other" onclick="openModal('hr')">
+          <div class="portfolio-thumb" style="background:linear-gradient(135deg,#134e5e,#71b280);">💼</div>
           <div class="portfolio-info">
             <div class="portfolio-name">HR Management System</div>
-            <div class="portfolio-tag">Desktop App (C# + MySQL)</div>
+            <div class="portfolio-tag">Desktop App</div>
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- BLOG -->
+    <section class="page" id="blog">
+      <div class="page-title">Blog</div>
+      <div class="title-line"></div>
+      <div class="blog-grid">
+        <a class="blog-card" href="#" onclick="return false;">
+          <div class="blog-thumb" style="background:linear-gradient(135deg,#1a1a2e,#16213e);">
+            <span>📱</span>
+            <div class="blog-thumb-overlay"><span class="blog-category">Flutter</span></div>
+          </div>
+          <div class="blog-info">
+            <div class="blog-date">Blog • Dec 2024</div>
+            <div class="blog-title">Getting Started with Flutter: My Developer Journey</div>
+            <div class="blog-excerpt">How I went from zero to building cross-platform apps — the resources, challenges, and breakthroughs along the way.</div>
+          </div>
+        </a>
+        <a class="blog-card" href="#" onclick="return false;">
+          <div class="blog-thumb" style="background:linear-gradient(135deg,#0d47a1,#1565c0);">
+            <span>🔥</span>
+            <div class="blog-thumb-overlay"><span class="blog-category">Firebase</span></div>
+          </div>
+          <div class="blog-info">
+            <div class="blog-date">Blog • Nov 2024</div>
+            <div class="blog-title">Flutter + Firebase: Building Real-Time Apps in 2024</div>
+            <div class="blog-excerpt">A deep dive into integrating Firebase Auth, Firestore, and Cloud Functions into your Flutter projects.</div>
+          </div>
+        </a>
+        <a class="blog-card" href="#" onclick="return false;">
+          <div class="blog-thumb" style="background:linear-gradient(135deg,#4a0080,#7b1fa2);">
+            <span>🧩</span>
+            <div class="blog-thumb-overlay"><span class="blog-category">State Management</span></div>
+          </div>
+          <div class="blog-info">
+            <div class="blog-date">Blog • Oct 2024</div>
+            <div class="blog-title">BLoC vs Provider vs Riverpod: Which Should You Choose?</div>
+            <div class="blog-excerpt">Comparing the top state management solutions in Flutter — pros, cons, and when to use each one.</div>
+          </div>
+        </a>
+        <a class="blog-card" href="#" onclick="return false;">
+          <div class="blog-thumb" style="background:linear-gradient(135deg,#134e5e,#1a6b5a);">
+            <span>🚀</span>
+            <div class="blog-thumb-overlay"><span class="blog-category">Career</span></div>
+          </div>
+          <div class="blog-info">
+            <div class="blog-date">Blog • Sep 2024</div>
+            <div class="blog-title">Tips for Flutter Beginners: What I Wish I Knew Earlier</div>
+            <div class="blog-excerpt">Practical advice and common mistakes to avoid when you're just starting out with Flutter development.</div>
+          </div>
+        </a>
+      </div>
+      <p style="text-align:center; color:var(--muted); font-size:0.8rem; margin-top:22px;">
+        More blogs coming soon — stay tuned! ✍️
+      </p>
     </section>
 
     <!-- CONTACT -->
@@ -682,28 +661,28 @@
       <div class="title-line"></div>
       <div class="contact-info-grid">
         <div class="contact-card">
-          <div class="contact-icon">✉️</div>
+          <div class="contact-icon"><i class="fa fa-envelope" style="color:var(--accent);"></i></div>
           <div>
             <div class="contact-label">Email</div>
             <div class="contact-value">sabaaaahussain@gmail.com</div>
           </div>
         </div>
         <div class="contact-card">
-          <div class="contact-icon">📍</div>
+          <div class="contact-icon"><i class="fa fa-location-dot" style="color:var(--accent);"></i></div>
           <div>
             <div class="contact-label">Location</div>
             <div class="contact-value">Rawalpindi, Pakistan</div>
           </div>
         </div>
         <div class="contact-card">
-          <div class="contact-icon">📞</div>
+          <div class="contact-icon"><i class="fa fa-phone" style="color:var(--accent);"></i></div>
           <div>
             <div class="contact-label">Phone</div>
             <div class="contact-value">+92 342 522 6178</div>
           </div>
         </div>
         <div class="contact-card">
-          <div class="contact-icon">💼</div>
+          <div class="contact-icon"><i class="fa-brands fa-linkedin" style="color:#0077b5;"></i></div>
           <div>
             <div class="contact-label">LinkedIn</div>
             <div class="contact-value">saba-fatima-344a86291</div>
@@ -712,21 +691,55 @@
       </div>
 
       <div class="form-title">Send a Message</div>
-      <div class="form-row">
-        <input type="text" class="form-input" placeholder="Full name" />
-        <input type="email" class="form-input" placeholder="Email address" />
-      </div>
-      <input type="text" class="form-input" placeholder="Subject" style="margin-bottom:12px;" />
-      <textarea class="form-input" placeholder="Your message..."></textarea>
-      <div style="margin-top:14px; overflow:hidden;">
-        <button class="submit-btn" onclick="handleSubmit()">✉️ Send Message</button>
+      <!-- 
+        EMAIL FORM SETUP (Formspree - Free & Easy):
+        1. Go to https://formspree.io and sign up FREE
+        2. Create a new form — you will get a form ID like "xpzvgkab"
+        3. Replace "YOUR_FORM_ID" below with your actual ID
+        4. That's it! Messages will come to your email automatically.
+      -->
+      <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="form-row">
+          <input type="text" name="name" class="form-input" placeholder="Full name" required />
+          <input type="email" name="email" class="form-input" placeholder="Email address" required />
+        </div>
+        <input type="text" name="subject" class="form-input" placeholder="Subject" required style="margin-bottom:12px;" />
+        <textarea name="message" class="form-input" placeholder="Your message..." required></textarea>
+        <div style="margin-top:14px; overflow:hidden;">
+          <button type="submit" class="submit-btn">✉️ Send Message</button>
+        </div>
+      </form>
+      <p class="form-note" style="margin-top:14px;">
+        ⚡ To make this form work: sign up free at <strong>formspree.io</strong>, create a form, and replace YOUR_FORM_ID in the code.
+      </p>
+      <div id="formSuccess" style="display:none; margin-top:14px; background:rgba(68,217,110,0.1); border:1px solid #44d96e; border-radius:10px; padding:14px; color:#44d96e; font-size:0.85rem;">
+        ✅ Message sent successfully! Saba will get back to you soon.
       </div>
     </section>
-
   </main>
 </div>
 
+<!-- PROJECT MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+  <div class="modal" id="modalBox">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title" id="modalTitle">Project Name</div>
+        <div class="modal-tag" id="modalTag">Flutter App</div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-imgs" id="modalImgs"></div>
+      <p class="modal-desc" id="modalDesc"></p>
+      <div class="modal-tech" id="modalTech"></div>
+      <div class="modal-links" id="modalLinks"></div>
+    </div>
+  </div>
+</div>
+
 <script>
+  // NAV
   function showPage(id, btn) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
@@ -734,6 +747,7 @@
     btn.classList.add('active');
   }
 
+  // PORTFOLIO FILTER
   function filterPortfolio(cat, btn) {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
@@ -742,9 +756,130 @@
     });
   }
 
-  function handleSubmit() {
-    alert('Message sent! Saba will get back to you soon. 🚀');
+  // PROJECT DATA
+  // ---- ADD YOUR OWN PROJECT DETAILS HERE ----
+  const projects = {
+    'safety': {
+      title: 'Smart Safety App',
+      tag: 'Flutter App',
+      desc: 'A cross-platform mobile safety application built with Flutter and Firebase. Features include real-time location sharing, emergency SOS button, trusted contacts management, and instant alert notifications. Designed to give users peace of mind in unsafe situations.',
+      imgs: ['🛡️', '📍', '🚨', '👥'],
+      imgBgs: ['linear-gradient(135deg,#0d47a1,#1565c0)', 'linear-gradient(135deg,#1a237e,#283593)', 'linear-gradient(135deg,#b71c1c,#c62828)', 'linear-gradient(135deg,#1b5e20,#2e7d32)'],
+      tech: ['Flutter', 'Dart', 'Firebase', 'Google Maps API', 'FCM'],
+      github: 'https://github.com/Sabafatima9',
+      demo: ''
+    },
+    'quiz': {
+      title: 'Quiz App',
+      tag: 'Flutter App',
+      desc: 'An interactive and engaging quiz application built with Flutter. Features multiple categories, timed questions, score tracking, and beautiful animated transitions between screens. Uses Provider for state management and supports both light and dark modes.',
+      imgs: ['❓', '🏆', '⏱️', '📊'],
+      imgBgs: ['linear-gradient(135deg,#1a1a2e,#e94560)', 'linear-gradient(135deg,#16213e,#0f3460)', 'linear-gradient(135deg,#533483,#e94560)', 'linear-gradient(135deg,#0f3460,#533483)'],
+      tech: ['Flutter', 'Dart', 'Provider', 'REST API'],
+      github: 'https://github.com/Sabafatima9',
+      demo: ''
+    },
+    'flutter-ui': {
+      title: 'Flutter UI Projects',
+      tag: 'Flutter App',
+      desc: 'A collection of pixel-perfect Flutter UI designs — including e-commerce screens, onboarding flows, food delivery app, and social media app UI. Each project demonstrates responsive layouts, custom animations, and modern design patterns.',
+      imgs: ['📱', '🛍️', '🍕', '💬'],
+      imgBgs: ['linear-gradient(135deg,#0f3460,#533483)', 'linear-gradient(135deg,#1a1a2e,#16213e)', 'linear-gradient(135deg,#b71c1c,#880e4f)', 'linear-gradient(135deg,#004d40,#00695c)'],
+      tech: ['Flutter', 'Dart', 'Custom Animations', 'UI/UX'],
+      github: 'https://github.com/Sabafatima9',
+      demo: ''
+    },
+    'portfolio': {
+      title: 'Portfolio Website',
+      tag: 'Web Development',
+      desc: 'My personal portfolio website built entirely with HTML, CSS, and JavaScript — no frameworks. Features a dark theme, smooth page transitions, filterable project gallery, responsive design for all screen sizes, and a working contact form.',
+      imgs: ['🌐', '🎨', '📂', '📬'],
+      imgBgs: ['linear-gradient(135deg,#1e3c72,#2a5298)', 'linear-gradient(135deg,#283593,#1a237e)', 'linear-gradient(135deg,#0d47a1,#01579b)', 'linear-gradient(135deg,#006064,#00838f)'],
+      tech: ['HTML5', 'CSS3', 'JavaScript', 'GitHub Pages'],
+      github: 'https://github.com/Sabafatima9/saba-portfolio',
+      demo: 'https://sabafatima9.github.io/saba-portfolio/'
+    },
+    'wordpress': {
+      title: 'WordPress Website',
+      tag: 'Web Development',
+      desc: 'A fully responsive WordPress website with custom theme, SEO optimization, and dynamic content management. Includes blog functionality, contact forms, and optimized page speed for better user experience.',
+      imgs: ['🔷', '✍️', '🔍', '⚡'],
+      imgBgs: ['linear-gradient(135deg,#41295a,#2f0743)', 'linear-gradient(135deg,#21759b,#4183b4)', 'linear-gradient(135deg,#1b5e20,#388e3c)', 'linear-gradient(135deg,#e65100,#ef6c00)'],
+      tech: ['WordPress', 'PHP', 'CSS', 'SEO', 'Elementor'],
+      github: '',
+      demo: ''
+    },
+    'hr': {
+      title: 'HR Management System',
+      tag: 'Desktop App (C# + MySQL)',
+      desc: 'A desktop-based HR Management System developed using C# and MySQL. The system handles complete employee lifecycle management — adding employees, managing departments, calculating salaries, generating salary slips, and exporting reports.',
+      imgs: ['💼', '👨‍💼', '💰', '📋'],
+      imgBgs: ['linear-gradient(135deg,#134e5e,#71b280)', 'linear-gradient(135deg,#1b5e20,#2e7d32)', 'linear-gradient(135deg,#e65100,#bf360c)', 'linear-gradient(135deg,#4a148c,#6a1b9a)'],
+      tech: ['C#', '.NET', 'MySQL', 'WinForms', 'Crystal Reports'],
+      github: 'https://github.com/Sabafatima9',
+      demo: ''
+    }
+  };
+
+  function openModal(key) {
+    const p = projects[key];
+    if (!p) return;
+    document.getElementById('modalTitle').textContent = p.title;
+    document.getElementById('modalTag').textContent = p.tag;
+    document.getElementById('modalDesc').textContent = p.desc;
+
+    // Images
+    const imgsEl = document.getElementById('modalImgs');
+    imgsEl.innerHTML = p.imgs.map((emoji, i) =>
+      `<div class="modal-img" style="background:${p.imgBgs[i]};font-size:2.5rem;">${emoji}</div>`
+    ).join('');
+
+    // Tech chips
+    document.getElementById('modalTech').innerHTML = p.tech.map(t => `<span>${t}</span>`).join('');
+
+    // Links
+    let links = '';
+    if (p.github) links += `<a href="${p.github}" target="_blank" class="modal-link secondary"><i class="fa-brands fa-github"></i> GitHub</a>`;
+    if (p.demo) links += `<a href="${p.demo}" target="_blank" class="modal-link primary">🌐 Live Demo</a>`;
+    document.getElementById('modalLinks').innerHTML = links;
+
+    document.getElementById('modalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
   }
+
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function closeModalOutside(e) {
+    if (e.target === document.getElementById('modalOverlay')) closeModal();
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  // CONTACT FORM
+  const form = document.getElementById('contactForm');
+  form.addEventListener('submit', async function(e) {
+    const action = form.getAttribute('action');
+    if (action.includes('YOUR_FORM_ID')) {
+      e.preventDefault();
+      document.getElementById('formSuccess').style.display = 'block';
+      document.getElementById('formSuccess').textContent = '⚠️ Please set up Formspree first! Go to formspree.io, get your form ID, and replace YOUR_FORM_ID in the code.';
+      document.getElementById('formSuccess').style.color = '#FFB400';
+      document.getElementById('formSuccess').style.borderColor = '#FFB400';
+      document.getElementById('formSuccess').style.background = 'rgba(255,180,0,0.08)';
+      return;
+    }
+    e.preventDefault();
+    const data = new FormData(form);
+    const resp = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+    if (resp.ok) {
+      form.reset();
+      document.getElementById('formSuccess').style.display = 'block';
+      document.getElementById('formSuccess').textContent = '✅ Message sent successfully! Saba will get back to you soon.';
+    }
+  });
 </script>
 </body>
 </html>
